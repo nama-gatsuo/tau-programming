@@ -28,7 +28,7 @@ class Edge {
         this.to.applyForce(p5.Vector.mult(force, -1.0));
         this.from.applyForce(force);
 
-        this.constrainLength();   
+        //this.constrainLength();   
     }
 
     constrainLength() {
@@ -36,12 +36,14 @@ class Edge {
         const dir = p5.Vector.sub(this.to.position, this.from.position).normalize();
         const center = p5.Vector.lerp(this.to.position, this.from.position, 0.5);
         
-        if (dist < this.minLength) {    
-            this.to.position = p5.Vector.add(center, p5.Vector.mult(dir, this.minLength / 2));
-            this.from.position = p5.Vector.sub(center, p5.Vector.mult(dir, this.minLength / 2));
+        if (dist < this.minLength) {
+            dir.setMag(this.minLength / 2);
+            this.to.position = p5.Vector.add(center, dir);
+            this.from.position = p5.Vector.sub(center, dir);
         } else if (dist > this.maxLength) {
-            this.to.position = p5.Vector.add(center, p5.Vector.mult(dir, this.maxLength / 2));
-            this.from.position = p5.Vector.sub(center, p5.Vector.mult(dir, this.maxLength / 2));
+            dir.setMag(this.maxLength / 2);
+            this.to.position = p5.Vector.add(center, dir);
+            this.from.position = p5.Vector.sub(center, dir);
         }
     }
 

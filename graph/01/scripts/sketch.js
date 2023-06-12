@@ -6,14 +6,11 @@
 
 const nodes = [];
 const edges = [];
-let selectedNode = null;
 
 setup = () => {
     const canvas = createCanvas(600, 600);
     canvas.parent('#container');
     canvas.id('p5');
-
-    strokeWeight(2);
 
     for (let i = 0; i < 100; i++) {
         nodes.push(new Node(random(width), random(height)));
@@ -30,16 +27,13 @@ setup = () => {
 draw = () => {
     background(0);
 
-    if (selectedNode) {
-        selectedNode.position.x = mouseX;
-        selectedNode.position.y = mouseY;
-    }
-
-    for (const edge of edges) {
-        edge.update();
-    }
+    strokeWeight(2);
 
     for (const node of nodes) {
+        if (node.selected) {
+            node.position.x = mouseX;
+            node.position.y = mouseY;
+        }
         node.repel(nodes);
         node.update();
     }
@@ -53,9 +47,14 @@ draw = () => {
     stroke(0);
     fill(255);
     for (const node of nodes) {
-        circle(node.position.x, node.position.y, 10);
+        if (node.selected) {
+            fill(255, 0, 0);
+            circle(node.position.x, node.position.y, 12);
+        } else {
+            fill(255);
+            circle(node.position.x, node.position.y, 10);
+        }       
     }
-
 }
 
 mousePressed = () => {
@@ -67,11 +66,13 @@ mousePressed = () => {
     });
     
     if (filtered.length > 0) {
-        selectedNode = filtered[0];
+        filtered[0].selected = true;
     }
 
 }
 
 mouseReleased = () => {
-    selectedNode = null;
+    for (const node of nodes) {
+        node.selected = false;
+    }
 }

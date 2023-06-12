@@ -7,14 +7,16 @@ class Node {
     maxSpeed;
     mass;
 
+    selected;
+
     constructor(x, y) {
         this.position = createVector(x, y);
         this.velocity = createVector(0, 0);
         
-        this.radius = 40;
+        this.radius = 50;
         this.maxSpeed = 5.0;
         
-        this.mass = 24.0;
+        this.mass = 50.0;
     }
 
     repel(nodes) {
@@ -46,7 +48,6 @@ class Node {
     }
 
     update() {
-        //this.velocity.limit(this.maxSpeed);
         this.velocity.mult(0.95); // damping
         this.position.add(this.velocity);
 
