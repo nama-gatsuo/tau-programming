@@ -1,3 +1,9 @@
+// Reference:
+// * The-Nature-of-Code-Examples p5.js https://github.com/nature-of-code/noc-examples-p5.js
+//   chp03_oscillation/NOC_3_10_spring
+// * Generative Design http://www.bnn.co.jp/support/generativedesign_p5js/
+//   M.6. Dynamic data sturctures
+
 const nodes = [];
 const edges = [];
 let selectedNode = null;

@@ -5,6 +5,7 @@ class Node {
     radius;
     
     maxSpeed;
+    mass;
 
     constructor(x, y) {
         this.position = createVector(x, y);
@@ -12,7 +13,8 @@ class Node {
         
         this.radius = 40;
         this.maxSpeed = 5.0;
-        this.maxForce = 0.4;
+        
+        this.mass = 24.0;
     }
 
     repel(nodes) {
@@ -28,7 +30,7 @@ class Node {
             const diff = p5.Vector.sub(this.position, other.position);
             const d = diff.mag();
 
-            if (d < this.radius) {
+            if (d > 0 && d < this.radius) {
                 const force = diff.normalize().div(d / this.radius);
                 sum.add(force);
                 count++;
@@ -44,7 +46,7 @@ class Node {
     }
 
     update() {
-        this.velocity.limit(this.maxSpeed);
+        //this.velocity.limit(this.maxSpeed);
         this.velocity.mult(0.95); // damping
         this.position.add(this.velocity);
 
@@ -52,7 +54,7 @@ class Node {
     }
 
     applyForce(force) {
-        force.limit(this.maxForce);
+        force.div(this.mass);
         this.velocity.add(force);
     }
 
