@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <title>graph</title>
+        <style>
+            * { 
+                margin: 0;
+                padding: 0;
+            }
+            html { height: 100% }
+            body { 
+                height: 100%;
+                background-color: #555;
+                overscroll-behavior-y: none;
+            }
+            #container {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                align-items: center;
+                justify-content: center;
+            }
+            #p5 {
+                box-shadow: 4px 4px 20px rgba(0,0,0,0.5);
+                border-radius: calc(100vw/2);
+                user-select: none;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- p5 js のコンテナ -->
+        <div id="container"></div>
+    </body>
+    <script src="https://unpkg.com/p5@1.6.0/lib/p5.min.js"></script>
+    <script src="scripts/edge.js"></script>
+    <script src="scripts/node.js"></script>
+    <script src="scripts/sketch.js"></script>
+</html>
