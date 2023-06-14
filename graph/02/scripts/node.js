@@ -25,10 +25,6 @@ class Node {
         
         for (const other of nodes) {
 
-            if (other === this) {
-                continue;
-            }
-
             const diff = p5.Vector.sub(this.position, other.position);
             const d = diff.mag();
 
